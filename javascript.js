@@ -8,6 +8,21 @@ const searchList = document.querySelector(".search-list");
 let movieLoadedArray = [];
 
 
+// event listeners
+searchInput.addEventListener("keyup",(e) =>{
+    let value = e.target.value.trim();
+    if(value.length == 0){
+        searchList.innerHTML = "";
+        searchList.classList.remove(".show")
+    }
+    else if(value.length > 3){
+        movieLoader(value)
+
+    }
+    
+
+})
+
 // for get wich movie user clicked and render more info for it
 searchList.addEventListener("click",(e)=>{
     //  First get clicked item id from DOM
@@ -43,9 +58,10 @@ searchList.addEventListener("click",(e)=>{
 // functios
 // this function GET movies from api
 async function movieLoader(value) {
-const res = await fetch(`https://omdbapi.com/?s=${value}&page=1&apikey=105c4b52`)
-const obj = await res.json();
-if(obj.Response === "True") {
+    const res = await fetch(`https://omdbapi.com/?s=${value}&page=1&apikey=105c4b52`)
+    const obj = await res.json();
+    console.log(obj)
+    if(obj.Response === "True") {
     searchList.classList.add("show")
     movieLoadedArray = [...obj.Search]
     // now generate dinamicly a container for EACH movie
@@ -64,8 +80,12 @@ if(obj.Response === "True") {
         searchItem.classList.add("search-item")
         searchItem.innerHTML = html
         searchList.insertBefore(searchItem, searchList.firstChild)
-    })
-}
+    })}
+    // if there is no movie in api for what user entered   
+    if(obj.Response === "False"){
+        let html = `<p>${obj.Error}</p>` 
+        searchList.innerHTML = html
+    }
 
 }
 
