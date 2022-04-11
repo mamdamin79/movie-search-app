@@ -13,7 +13,7 @@ searchInput.addEventListener("keyup",(e) =>{
     let value = e.target.value.trim();
     if(value.length == 0){
         searchList.innerHTML = "";
-        searchList.classList.remove(".show")
+        searchList.classList.remove("show")
     }
     else if(value.length > 3){
         movieLoader(value)
@@ -83,6 +83,7 @@ async function movieLoader(value) {
     })}
     // if there is no movie in api for what user entered   
     if(obj.Response === "False"){
+        searchList.classList.add("show")
         let html = `<p>${obj.Error}</p>` 
         searchList.innerHTML = html
     }
