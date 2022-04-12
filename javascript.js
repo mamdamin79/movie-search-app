@@ -29,6 +29,7 @@ searchList.addEventListener("click",(e)=>{
     let omdbID =e.target.id
     // find clicked item object from movieLoadedArray        
     let clickedItem = movieLoadedArray.find(movie =>movie.imdbID === omdbID )
+    console.log(clickedItem)
     // then generate more info section for it
     let html = `<div class="img-container">
                     <img src="${clickedItem.Poster}" alt="">
@@ -40,14 +41,10 @@ searchList.addEventListener("click",(e)=>{
                     <ul>
                         <li class="year">year:${clickedItem.Year}</li>
                         <li class="rate">rating: pg-13 </li>
-                        <li class="release">release:${clickedItem.Released}</li>
+                        <li class="release">release:${Number(clickedItem.Year) +2}</li>
                     </ul>
-                    <p class="genre"><b>genre:</b>${clickedItem.Genre}</p>
-                    <p class="writer"><b>writer:</b>${clickedItem.Writer}</p>
-                    <p class="actors"><b>actors:</b>${clickedItem.Actors}</p>
-                    <p class="brief">${clickedItem.Plot}</p>
-                    <p class="language"><b>language:</b>${clickedItem.Language}</p>
-                    <p class="awards"><b><i class="uil uil-award"></i></b>${clickedItem.Awards}</p>
+                    <p class="genre"><b>Type:</b>${clickedItem.Type}</p>
+                    <p class="writer"><b>imdbID:</b>${clickedItem.imdbID}</p>
                 </div>`
                 searchInput.value = ""
                 searchList.innerHTML = ""

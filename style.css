@@ -48,7 +48,7 @@ header .logo span {
     border: 1px silver silver;
     width: 40%;
     margin: 0.5rem auto;
-    min-width: 350px;
+    min-width: 300px;
     position: relative;
 }
 .mamad input{
@@ -63,7 +63,6 @@ header .logo span {
     width: 100%;
     left: 0;
     top: 100%;
-    max-height: 500px;
     overflow-y: scroll;
     background-color: rgb(65, 62, 62)
 
